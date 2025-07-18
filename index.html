@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your High School Survival Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .journal-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            transform: rotate(-1deg);
+            animation: floatUp 0.8s ease-out;
+        }
+        
+        @keyframes floatUp {
+            from { transform: translateY(50px) rotate(-1deg); opacity: 0; }
+            to { transform: translateY(0) rotate(-1deg); opacity: 1; }
+        }
+        
+        .journal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .journal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.1) 0px,
+                rgba(255,255,255,0.1) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .journal-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .journal-subtitle {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            position: relative;
+            min-width: 120px;
+        }
+        
+        .tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            background: white;
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .content {
+            padding: 40px;
+            min-height: 500px;
+        }
+        
+        .tip-section {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .tip-section.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .tip-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 60px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .tip-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+        }
+        
+        .tip-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 25px;
+        }
+        
+        .personal-story {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .personal-story::before {
+            content: '💭';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2em;
+            opacity: 0.7;
+        }
+        
+        .story-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5em;
+            color: #d35400;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .action-steps {
+            background: linear-gradient(135deg, #a8edea, #74b9ff);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .action-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5em;
+            color: #0984e3;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .action-steps ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .action-steps li {
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid #0984e3;
+            transition: transform 0.3s ease;
+        }
+        
+        .action-steps li:hover {
+            transform: translateX(5px);
+        }
+        
+        .action-steps li::before {
+            content: '✓';
+            color: #00b894;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .intro-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .intro-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .intro-text {
+            font-size: 1.3em;
+            color: #34495e;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .get-started-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+        
+        .get-started-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 1px solid #e9ecef;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .nav-btn:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            margin: 0 20px;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .journal-container {
+                margin: 10px;
+                transform: none;
+            }
+            
+            .journal-title {
+                font-size: 2.5em;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                flex: none;
+                width: 50%;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="journal-container">
+        <div class="journal-header">
+            <h1 class="journal-title">Your High School Survival Guide</h1>
+            <p class="journal-subtitle">From a Grade 10 student who's been there! 📚✨</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('intro')">Start Here</button>
+            <button class="tab" onclick="showSection('tip1')">Tip #1</button>
+            <button class="tab" onclick="showSection('tip2')">Tip #2</button>
+            <button class="tab" onclick="showSection('tip3')">Tip #3</button>
+            <button class="tab" onclick="showSection('tip4')">Tip #4</button>
+            <button class="tab" onclick="showSection('tip5')">Tip #5</button>
+        </div>
+        
+        <div class="content">
+            <div id="intro" class="tip-section active">
+                <div class="intro-section">
+                    <h2 class="intro-title">Hey there, future high schooler! 👋</h2>
+                    <p class="intro-text">
+                        Remember when you were scared of riding a bike without training wheels? High school is kind of like that - it seems scary at first, but once you get the hang of it, it's actually pretty awesome! 
+                        <br><br>
+                        I'm Sebastian, and I just finished my first year of high school. I remember being super nervous about starting Grade 9, but now I'm here to share the 5 most important things I learned that made my transition smooth (and even fun!).
+                    </p>
+                    <button class="get-started-btn" onclick="showSection('tip1')">
+                        Let's dive in! 🚀
+                    </button>
+                </div>
+            </div>
+            
+            <div id="tip1" class="tip-section">
+                <div class="tip-number">1</div>
+                <h2 class="tip-title"><span class="emoji">🗺️</span>Map Out Your School Like a Pro</h2>
+                <p class="tip-content">
+                    The #1 thing that stressed me out in Grade 9 was getting lost! High school is WAY bigger than elementary school, and you'll have different classrooms for each subject. But here's the secret: become a school navigation expert BEFORE your first day!
+                </p>
+                
+                <div class="personal-story">
+                    <div class="story-title">My Epic Fail Story 😅</div>
+                    <p>On my first day, I spent 15 minutes looking for my math class and ended up in the staff room by accident! The teachers were super nice, but I was SO embarrassed. That's when I decided to become a school map master.</p>
+                </div>
+                
+                <div class="action-steps">
+                    <div class="action-title">Your Action Plan:</div>
+                    <ul>
+                        <li>Visit your school during orientation day and walk the halls</li>
+                        <li>Take photos of important locations (office, library, cafeteria)</li>
+                        <li>Practice walking from class to class during breaks</li>
+                        <li>Find the quickest routes AND backup routes</li>
+                        <li>Locate all the bathrooms (trust me, you'll need this info!)</li>
+                        <li>Ask older students for insider tips about shortcuts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="tip2" class="tip-section">
+                <div class="tip-number">2</div>
+                <h2 class="tip-title"><span class="emoji">📅</span>Time Management is Your Superpower</h2>
+                <p class="tip-content">
+                    In elementary school, your teacher helped you stay organized. In high school, YOU'RE the boss of your schedule! This was probably the biggest change for me. You'll have homework from multiple teachers, extracurriculars, and maybe even a part-time job.
+                </p>
+                
+                <div class="personal-story">
+                    <div class="story-title">When I Almost Crashed and Burned 🔥</div>
+                    <p>In my first semester, I thought I could just remember everything in my head. WRONG! I forgot about a major history project and had to pull an all-nighter. Never again! That's when I discovered the magic of planning ahead.</p>
+                </div>
+                
+                <div class="action-steps">
+                    <div class="action-title">Your Action Plan:</div>
+                    <ul>
+                        <li>Get a planner or use your phone's calendar app</li>
+                        <li>Write down ALL due dates as soon as you get them</li>
+                        <li>Break big projects into smaller, manageable tasks</li>
+                        <li>Set reminders 2-3 days before deadlines</li>
+                        <li>Schedule study time like you would a dentist appointment</li>
+                        <li>Leave buffer time for unexpected stuff (it WILL happen!)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="tip3" class="tip-section">
+                <div class="tip-number">3</div>
+                <h2 class="tip-title"><span class="emoji">🤝</span>Build Your Support Squad</h2>
+                <p class="tip-content">
+                    High school can feel overwhelming sometimes, but you don't have to do it alone! Building a network of friends, teachers, and mentors was game-changing for me. These people will celebrate your wins and help you through tough times.
+                </p>
+                
+                <div class="personal-story">
+                    <div class="story-title">How My English Teacher Saved My Grade 💪</div>
+                    <p>I was struggling with essay writing in Grade 9. Instead of suffering in silence, I asked my English teacher for help. She gave me extra feedback and even recommended some writing resources. My grades improved, and I gained confidence!</p>
+                </div>
+                
+                <div class="action-steps">
+                    <div class="action-title">Your Action Plan:</div>
+                    <ul>
+                        <li>Introduce yourself to teachers - they WANT to help you succeed</li>
+                        <li>Join at least one club or sport to meet like-minded people</li>
+                        <li>Don't be afraid to ask questions (everyone else probably has the same ones!)</li>
+                        <li>Find a study buddy in each of your classes</li>
+                        <li>Connect with older students who can share their experiences</li>
+                        <li>Remember: asking for help is a sign of strength, not weakness</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="tip4" class="tip-section">
+                <div class="tip-number">4</div>
+                <h2 class="tip-title"><span class="emoji">🎯</span>Set Goals That Actually Matter to YOU</h2>
+                <p class="tip-content">
+                    Everyone will have opinions about what you should do in high school. But here's the thing - your goals should reflect what YOU care about, not what everyone else expects. Start with small, achievable goals and build from there.
+                </p>
+                
+                <div class="personal-story">
+                    <div class="story-title">My Goal-Setting Game Changer 🎲</div>
+                    <p>At first, I set a goal to get 90% in every subject because that's what my older cousin did. But I was miserable! I realized I cared more about understanding concepts than perfect grades. I changed my goal to "truly understand each subject" and ended up doing better AND feeling happier.</p>
+                </div>
+                
+                <div class="action-steps">
+                    <div class="action-title">Your Action Plan:</div>
+                    <ul>
+                        <li>Set 2-3 realistic goals for your first semester</li>
+                        <li>Make them specific and measurable (not just "do well")</li>
+                        <li>Include both academic and personal goals</li>
+                        <li>Write them down and review them monthly</li>
+                        <li>Celebrate small wins along the way</li>
+                        <li>Be flexible - it's okay to adjust goals as you grow</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="tip5" class="tip-section">
+                <div class="tip-number">5</div>
+                <h2 class="tip-title"><span class="emoji">🧘</span>Take Care of Yourself First</h2>
+                <p class="tip-content">
+                    This might be the most important tip of all! High school brings new pressures, and it's easy to get caught up in trying to be perfect. But remember - you're still growing and learning. Be kind to yourself, and don't forget to have fun!
+                </p>
+                
+                <div class="personal-story">
+                    <div class="story-title">My Burnout Wake-Up Call ⚡</div>
+                    <p>In my second semester, I was doing homework until midnight every night and skipping lunch to study. I got sick, my grades dropped, and I was cranky all the time. That's when I learned that taking care of myself wasn't selfish - it was necessary!</p>
+                </div>
+                
+                <div class="action-steps">
+                    <div class="action-title">Your Action Plan:</div>
+                    <ul>
+                        <li>Get 7-9 hours of sleep (your brain needs it to learn!)</li>
+                        <li>Eat regular meals and stay hydrated</li>
+                        <li>Make time for activities you enjoy</li>
+                        <li>Talk to someone when you're feeling stressed</li>
+                        <li>Remember that mistakes are part of learning</li>
+                        <li>Don't compare yourself to others - you're on your own journey</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" onclick="previousSection()">← Previous</button>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <button class="nav-btn" id="nextBtn" onclick="nextSection()">Next →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSection = 0;
+        const sections = ['intro', 'tip1', 'tip2', 'tip3', 'tip4', 'tip5'];
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.tip-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update current section index
+            currentSection = sections.indexOf(sectionId);
+            
+            // Update active tab
+            document.querySelectorAll('.tab')[currentSection].classList.add('active');
+            
+            // Update navigation
+            updateNavigation();
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+        
+        function nextSection() {
+            if (currentSection < sections.length - 1) {
+                currentSection++;
+                showSection(sections[currentSection]);
+            }
+        }
+        
+        function previousSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                showSection(sections[currentSection]);
+            }
+        }
+        
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSection === 0;
+            nextBtn.disabled = currentSection === sections.length - 1;
+            
+            if (currentSection === sections.length - 1) {
+                nextBtn.textContent = 'You did it! 🎉';
+            } else {
+                nextBtn.textContent = 'Next →';
+            }
+        }
+        
+        function updateProgressBar() {
+            const progressFill = document.getElementById('progressFill');
+            const progress = ((currentSection + 1) / sections.length) * 100;
+            progressFill.style.width = progress + '%';
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                previousSection();
+            } else if (e.key === 'ArrowRight') {
+                nextSection();
+            }
+        });
+        
+        // Initialize
+        updateNavigation();
+        updateProgressBar();
+    </script>
+</body>
+</html>
