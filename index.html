@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your High School Survival Guide</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
         
         * {
             margin: 0;
@@ -14,7 +14,7 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
@@ -105,7 +105,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             color: #6c757d;
             transition: all 0.3s ease;
@@ -184,19 +184,31 @@
         
         .tip-content {
             font-size: 1.1em;
-            line-height: 1.8;
+            line-height: 1.9;
             color: #34495e;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.3px;
         }
         
         .personal-story {
             background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 25px 0;
             border-left: 5px solid #f39c12;
             position: relative;
             overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .personal-story p {
+            line-height: 1.8;
+            font-size: 1.05em;
+            color: #2c3e50;
+            margin: 0;
+            letter-spacing: 0.2px;
         }
         
         .personal-story::before {
@@ -218,9 +230,10 @@
         
         .action-steps {
             background: linear-gradient(135deg, #a8edea, #74b9ff);
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 25px 0;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .action-title {
@@ -237,12 +250,16 @@
         }
         
         .action-steps li {
-            margin-bottom: 10px;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             border-left: 4px solid #0984e3;
             transition: transform 0.3s ease;
+            font-size: 1.02em;
+            line-height: 1.6;
+            color: #2c3e50;
+            letter-spacing: 0.2px;
         }
         
         .action-steps li:hover {
@@ -270,11 +287,14 @@
         }
         
         .intro-text {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #34495e;
-            line-height: 1.8;
+            line-height: 1.9;
             max-width: 600px;
             margin: 0 auto 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.3px;
         }
         
         .get-started-btn {
@@ -288,6 +308,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            font-family: 'Montserrat', sans-serif;
         }
         
         .get-started-btn:hover {
@@ -319,6 +340,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             opacity: 0.8;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .nav-btn:hover {
@@ -392,57 +414,54 @@
         <div class="content">
             <div id="intro" class="tip-section active">
                 <div class="intro-section">
-                    <h2 class="intro-title">Hey there, future high schooler! 👋</h2>
+                    <h2 class="intro-title">Hey there, future high schooler!</h2>
                     <p class="intro-text">
-                        Remember when you were scared of riding a bike without training wheels? High school is kind of like that - it seems scary at first, but once you get the hang of it, it's actually pretty awesome! 
+                        Remember when you were scared of riding a bike without training wheels? High school is kind of like that. It seems scary at first, but when you get the hang of it, it's actually pretty fun! 
                         <br><br>
-                        I'm Sebastian, and I just finished my first year of high school. I remember being super nervous about starting Grade 9, but now I'm here to share the 5 most important things I learned that made my transition smooth (and even fun!).
+                        I'm Sebastian, and I just finished Grade 10. I remember being really nervous about going into a new setting, with nobody I knew, but now I'm here to share the 5 most important things that made my transition smooth, and even fun!
                     </p>
                     <button class="get-started-btn" onclick="showSection('tip1')">
-                        Let's dive in! 🚀
+                        Let's dive in!
                     </button>
                 </div>
             </div>
             
             <div id="tip1" class="tip-section">
                 <div class="tip-number">1</div>
-                <h2 class="tip-title"><span class="emoji">🗺️</span>Map Out Your School Like a Pro</h2>
+                <h2 class="tip-title">Map Out Your School</h2>
                 <p class="tip-content">
-                    The #1 thing that stressed me out in Grade 9 was getting lost! High school is WAY bigger than elementary school, and you'll have different classrooms for each subject. But here's the secret: become a school navigation expert BEFORE your first day!
+                    The most stressing factor in Grade 9 was getting lost. High school is much larger than elementary school or middle school, and you'll have different classrooms for each individual subject, so you should become familiar with your school by the end of your first week.
                 </p>
                 
                 <div class="personal-story">
-                    <div class="story-title">My Epic Fail Story 😅</div>
-                    <p>On my first day, I spent 15 minutes looking for my math class and ended up in the staff room by accident! The teachers were super nice, but I was SO embarrassed. That's when I decided to become a school map master.</p>
+                    <div class="story-title">A Small Story</div>
+                    <p>On my first day, I spent 15 minutes looking for my math class and ended up just walking in circles around the library because the school was so large. That's when I decided to actually look at the floor plan and become familiar with the place.</p>
                 </div>
                 
                 <div class="action-steps">
-                    <div class="action-title">Your Action Plan:</div>
+                    <div class="action-title">What You Should Do:</div>
                     <ul>
                         <li>Visit your school during orientation day and walk the halls</li>
-                        <li>Take photos of important locations (office, library, cafeteria)</li>
-                        <li>Practice walking from class to class during breaks</li>
                         <li>Find the quickest routes AND backup routes</li>
                         <li>Locate all the bathrooms (trust me, you'll need this info!)</li>
-                        <li>Ask older students for insider tips about shortcuts</li>
                     </ul>
                 </div>
             </div>
             
             <div id="tip2" class="tip-section">
                 <div class="tip-number">2</div>
-                <h2 class="tip-title"><span class="emoji">📅</span>Time Management is Your Superpower</h2>
+                <h2 class="tip-title">Learn How to Efficiently Manage Time</h2>
                 <p class="tip-content">
-                    In elementary school, your teacher helped you stay organized. In high school, YOU'RE the boss of your schedule! This was probably the biggest change for me. You'll have homework from multiple teachers, extracurriculars, and maybe even a part-time job.
+                    In elementary school, your teacher helped you stay organized. In high school, YOU'RE the one in charge of your schedule (not in school but at home)! This was probably the biggest change for me. You'll have homework from multiple teachers, extracurriculars, and maybe even a part-time job.
                 </p>
                 
                 <div class="personal-story">
-                    <div class="story-title">When I Almost Crashed and Burned 🔥</div>
-                    <p>In my first semester, I thought I could just remember everything in my head. WRONG! I forgot about a major history project and had to pull an all-nighter. Never again! That's when I discovered the magic of planning ahead.</p>
+                    <div class="story-title">When I Thought I Could Just Wing It</div>
+                    <p>In my first few months, I thought I could remember everything in my head. I was incredibly wrong. I forgot about a major project in one of my classes, and had to almost pull an all-nighter. From then on, I started to use the reminders app, which helps me stay on track.</p>
                 </div>
                 
                 <div class="action-steps">
-                    <div class="action-title">Your Action Plan:</div>
+                    <div class="action-title">What You Should Do:</div>
                     <ul>
                         <li>Get a planner or use your phone's calendar app</li>
                         <li>Write down ALL due dates as soon as you get them</li>
@@ -456,23 +475,23 @@
             
             <div id="tip3" class="tip-section">
                 <div class="tip-number">3</div>
-                <h2 class="tip-title"><span class="emoji">🤝</span>Build Your Support Squad</h2>
+                <h2 class="tip-title">Build a Friend Group</h2>
                 <p class="tip-content">
-                    High school can feel overwhelming sometimes, but you don't have to do it alone! Building a network of friends, teachers, and mentors was game-changing for me. These people will celebrate your wins and help you through tough times.
+                    High school can feel overwhelming at times, but you don't need to do it alone. Building a support system consisting of friends, teachers and mentors was incredibly helpful for me. These people, if chosen right, will celebrate your wins and help you through tougher times.
                 </p>
                 
                 <div class="personal-story">
-                    <div class="story-title">How My English Teacher Saved My Grade 💪</div>
+                    <div class="story-title">How My English Teacher Saved My Grade</div>
                     <p>I was struggling with essay writing in Grade 9. Instead of suffering in silence, I asked my English teacher for help. She gave me extra feedback and even recommended some writing resources. My grades improved, and I gained confidence!</p>
                 </div>
                 
                 <div class="action-steps">
-                    <div class="action-title">Your Action Plan:</div>
+                    <div class="action-title">What You Should Do:</div>
                     <ul>
                         <li>Introduce yourself to teachers - they WANT to help you succeed</li>
                         <li>Join at least one club or sport to meet like-minded people</li>
                         <li>Don't be afraid to ask questions (everyone else probably has the same ones!)</li>
-                        <li>Find a study buddy in each of your classes</li>
+                        <li>Find a study partner in each of your classes</li>
                         <li>Connect with older students who can share their experiences</li>
                         <li>Remember: asking for help is a sign of strength, not weakness</li>
                     </ul>
@@ -481,18 +500,18 @@
             
             <div id="tip4" class="tip-section">
                 <div class="tip-number">4</div>
-                <h2 class="tip-title"><span class="emoji">🎯</span>Set Goals That Actually Matter to YOU</h2>
+                <h2 class="tip-title">Set Goals That Actually Matter to YOU</h2>
                 <p class="tip-content">
-                    Everyone will have opinions about what you should do in high school. But here's the thing - your goals should reflect what YOU care about, not what everyone else expects. Start with small, achievable goals and build from there.
+                    Everyone will have opinions about what you should do in high school, whether it be to enjoy it, to get high grades, or to work hard to get into a dream university. But the thing is, your goals should reflect what YOU care about, not what everybody else does or expects. Start with small achievable goals and go from there.
                 </p>
                 
                 <div class="personal-story">
-                    <div class="story-title">My Goal-Setting Game Changer 🎲</div>
-                    <p>At first, I set a goal to get 90% in every subject because that's what my older cousin did. But I was miserable! I realized I cared more about understanding concepts than perfect grades. I changed my goal to "truly understand each subject" and ended up doing better AND feeling happier.</p>
+                    <div class="story-title">Setting Goals</div>
+                    <p>At first, I set a goal to get at least a 95% in every subject because that's what my friends were doing and I thought it would be easily achievable. But I was wrong. It wasn't middle school or elementary school anymore. I realized I cared more about perfect grades than understanding concepts. I changed my goal to "truly understand each subject" and ended up doing better AND feeling happier.</p>
                 </div>
                 
                 <div class="action-steps">
-                    <div class="action-title">Your Action Plan:</div>
+                    <div class="action-title">What You Should Do:</div>
                     <ul>
                         <li>Set 2-3 realistic goals for your first semester</li>
                         <li>Make them specific and measurable (not just "do well")</li>
@@ -506,25 +525,25 @@
             
             <div id="tip5" class="tip-section">
                 <div class="tip-number">5</div>
-                <h2 class="tip-title"><span class="emoji">🧘</span>Take Care of Yourself First</h2>
+                <h2 class="tip-title">Take Care of Yourself First</h2>
                 <p class="tip-content">
                     This might be the most important tip of all! High school brings new pressures, and it's easy to get caught up in trying to be perfect. But remember - you're still growing and learning. Be kind to yourself, and don't forget to have fun!
                 </p>
                 
                 <div class="personal-story">
-                    <div class="story-title">My Burnout Wake-Up Call ⚡</div>
+                    <div class="story-title">Avoid Burnout</div>
                     <p>In my second semester, I was doing homework until midnight every night and skipping lunch to study. I got sick, my grades dropped, and I was cranky all the time. That's when I learned that taking care of myself wasn't selfish - it was necessary!</p>
                 </div>
                 
                 <div class="action-steps">
-                    <div class="action-title">Your Action Plan:</div>
+                    <div class="action-title">What You Should Do:</div>
                     <ul>
                         <li>Get 7-9 hours of sleep (your brain needs it to learn!)</li>
-                        <li>Eat regular meals and stay hydrated</li>
+                        <li><strong>Eat regular meals and stay hydrated</strong></li>
                         <li>Make time for activities you enjoy</li>
                         <li>Talk to someone when you're feeling stressed</li>
                         <li>Remember that mistakes are part of learning</li>
-                        <li>Don't compare yourself to others - you're on your own journey</li>
+                        <li><strong>Don't compare yourself to others - you're on your own journey</strong></li>
                     </ul>
                 </div>
             </div>
