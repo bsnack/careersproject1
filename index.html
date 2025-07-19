@@ -4,411 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your High School Survival Guide</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .journal-container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: #fff;
-            border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-            overflow: hidden;
-            position: relative;
-            transform: rotate(-1deg);
-            animation: floatUp 0.8s ease-out;
-        }
-        
-        @keyframes floatUp {
-            from { transform: translateY(50px) rotate(-1deg); opacity: 0; }
-            to { transform: translateY(0) rotate(-1deg); opacity: 1; }
-        }
-        
-        .journal-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .journal-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(255,255,255,0.1) 0px,
-                rgba(255,255,255,0.1) 10px,
-                transparent 10px,
-                transparent 20px
-            );
-            animation: shimmer 20s linear infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .journal-title {
-            font-family: 'Caveat', cursive;
-            font-size: 3em;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .journal-subtitle {
-            font-size: 1.2em;
-            color: rgba(255,255,255,0.9);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .tabs {
-            display: flex;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-            overflow-x: auto;
-        }
-        
-        .tab {
-            flex: 1;
-            padding: 15px 20px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: #6c757d;
-            transition: all 0.3s ease;
-            position: relative;
-            min-width: 120px;
-        }
-        
-        .tab:hover {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-        }
-        
-        .tab.active {
-            color: #667eea;
-            background: white;
-        }
-        
-        .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-        
-        .content {
-            padding: 40px;
-            min-height: 500px;
-        }
-        
-        .tip-section {
-            display: none;
-            animation: slideIn 0.5s ease-out;
-        }
-        
-        .tip-section.active {
-            display: block;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(30px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .tip-number {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 60px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        .tip-title {
-            font-size: 2.2em;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-family: 'Caveat', cursive;
-            font-weight: 700;
-        }
-        
-        .tip-content {
-            font-size: 1.1em;
-            line-height: 1.9;
-            color: #34495e;
-            margin-bottom: 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-        }
-        
-        .personal-story {
-            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 25px 0;
-            border-left: 5px solid #f39c12;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .personal-story p {
-            line-height: 1.8;
-            font-size: 1.05em;
-            color: #2c3e50;
-            margin: 0;
-            letter-spacing: 0.2px;
-        }
-        
-        .personal-story::before {
-            content: '💭';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 2em;
-            opacity: 0.7;
-        }
-        
-        .story-title {
-            font-family: 'Caveat', cursive;
-            font-size: 1.5em;
-            color: #d35400;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .action-steps {
-            background: linear-gradient(135deg, #a8edea, #74b9ff);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 25px 0;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .action-title {
-            font-family: 'Caveat', cursive;
-            font-size: 1.5em;
-            color: #0984e3;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .action-steps ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .action-steps li {
-            margin-bottom: 15px;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            border-left: 4px solid #0984e3;
-            transition: transform 0.3s ease;
-            font-size: 1.02em;
-            line-height: 1.6;
-            color: #2c3e50;
-            letter-spacing: 0.2px;
-        }
-        
-        .action-steps li:hover {
-            transform: translateX(5px);
-        }
-        
-        .action-steps li::before {
-            content: '✓';
-            color: #00b894;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .intro-section {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .intro-title {
-            font-family: 'Caveat', cursive;
-            font-size: 3em;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .intro-text {
-            font-size: 1.2em;
-            color: #34495e;
-            line-height: 1.9;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-        }
-        
-        .get-started-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .get-started-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
-        }
-        
-        .emoji {
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-top: 1px solid #e9ecef;
-            margin-top: 30px;
-        }
-        
-        .nav-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            opacity: 0.8;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .nav-btn:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-        
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .progress-bar {
-            flex: 1;
-            margin: 0 20px;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transition: width 0.5s ease;
-            border-radius: 4px;
-        }
-        
-        @media (max-width: 768px) {
-            .journal-container {
-                margin: 10px;
-                transform: none;
-            }
-            
-            .journal-title {
-                font-size: 2.5em;
-            }
-            
-            .tabs {
-                flex-wrap: wrap;
-            }
-            
-            .tab {
-                flex: none;
-                width: 50%;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="journal-container">
         <div class="journal-header">
             <h1 class="journal-title">Your High School Survival Guide</h1>
-            <p class="journal-subtitle">From a Grade 10 student who's been there! 📚✨</p>
+            <p class="journal-subtitle">Real advice from someone who just lived through it</p>
         </div>
         
         <div class="tabs">
             <button class="tab active" onclick="showSection('intro')">Start Here</button>
-            <button class="tab" onclick="showSection('tip1')">Tip #1</button>
-            <button class="tab" onclick="showSection('tip2')">Tip #2</button>
-            <button class="tab" onclick="showSection('tip3')">Tip #3</button>
-            <button class="tab" onclick="showSection('tip4')">Tip #4</button>
-            <button class="tab" onclick="showSection('tip5')">Tip #5</button>
+            <button class="tab" onclick="showSection('tip1')">Navigation</button>
+            <button class="tab" onclick="showSection('tip2')">Time Management</button>
+            <button class="tab" onclick="showSection('tip3')">Building Support</button>
+            <button class="tab" onclick="showSection('tip4')">Goal Setting</button>
+            <button class="tab" onclick="showSection('tip5')">Self-Care</button>
         </div>
         
         <div class="content">
@@ -419,6 +30,8 @@
                         Remember when you were scared of riding a bike without training wheels? High school is kind of like that. It seems scary at first, but when you get the hang of it, it's actually pretty fun! 
                         <br><br>
                         I'm Sebastian, and I just finished Grade 10. I remember being really nervous about going into a new setting, with nobody I knew, but now I'm here to share the 5 most important things that made my transition smooth, and even fun!
+                        <br><br>
+                        This isn't just random advice - it's based on real experiences, mistakes I made, and lessons I learned the hard way. Plus, I've connected everything back to what we're learning in our Civics and Careers course about life transitions and planning for the future.
                     </p>
                     <button class="get-started-btn" onclick="showSection('tip1')">
                         Let's dive in!
@@ -430,20 +43,33 @@
                 <div class="tip-number">1</div>
                 <h2 class="tip-title">Map Out Your School</h2>
                 <p class="tip-content">
-                    The most stressing factor in Grade 9 was getting lost. High school is much larger than elementary school or middle school, and you'll have different classrooms for each individual subject, so you should become familiar with your school by the end of your first week.
+                    The most stressing factor in Grade 9 was getting lost. High school is much larger than elementary school or middle school, and you'll have different classrooms for each individual subject, so you should become familiar with your school by the end of your first week. This connects directly to what we learned about adapting to new environments and developing spatial awareness as a life skill.
                 </p>
                 
                 <div class="personal-story">
                     <div class="story-title">A Small Story</div>
-                    <p>On my first day, I spent 15 minutes looking for my math class and ended up just walking in circles around the library because the school was so large. That's when I decided to actually look at the floor plan and become familiar with the place.</p>
+                    <p>On my first day, I spent 15 minutes looking for my math class and ended up just walking in circles around the library because the school was so large. I was panicking inside, watching other students confidently walk to their classes while I was completely lost. That's when I decided to actually look at the floor plan and become familiar with the place. I realized that being prepared wasn't just about having supplies - it was about understanding my environment.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <div class="reflection-title">Personal Reflection on Learning</div>
+                    <p>Looking back, this experience taught me that preparation reduces anxiety. In our course, we talked about how successful people anticipate challenges and prepare for them. Getting lost wasn't just embarrassing - it made me realize I needed to take ownership of my learning environment. This skill of environmental awareness actually helped me later when I started my part-time job and had to learn a new workplace layout quickly.</p>
+                </div>
+                
+                <div class="course-reference">
+                    <h4>Course Connection: Adaptive Skills</h4>
+                    <p>This relates to our unit on developing adaptive skills for life transitions. Being able to navigate new physical spaces is actually a transferable skill that you'll use in college, university, and future workplaces. It's about developing spatial intelligence and reducing stress through preparation.</p>
                 </div>
                 
                 <div class="action-steps">
                     <div class="action-title">What You Should Do:</div>
                     <ul>
-                        <li>Visit your school during orientation day and walk the halls</li>
-                        <li>Find the quickest routes AND backup routes</li>
-                        <li>Locate all the bathrooms (trust me, you'll need this info!)</li>
+                        <li>Visit your school during orientation day and walk the halls systematically - don't just follow the crowd</li>
+                        <li>Use your school's website to find floor plans and study them before your first day</li>
+                        <li>Find the quickest routes AND backup routes between your classes</li>
+                        <li>Locate all the bathrooms, office, guidance counselor, and library - you'll need these!</li>
+                        <li>Time yourself walking between classes to see if you need extra time</li>
+                        <li>Download apps like <a href="https://www.google.com/maps" class="link" target="_blank">Google Maps</a> indoor navigation if your school uses it</li>
                     </ul>
                 </div>
             </div>
@@ -452,23 +78,35 @@
                 <div class="tip-number">2</div>
                 <h2 class="tip-title">Learn How to Efficiently Manage Time</h2>
                 <p class="tip-content">
-                    In elementary school, your teacher helped you stay organized. In high school, YOU'RE the one in charge of your schedule (not in school but at home)! This was probably the biggest change for me. You'll have homework from multiple teachers, extracurriculars, and maybe even a part-time job.
+                    In elementary school, your teacher helped you stay organized. In high school, YOU'RE the one in charge of your schedule (not in school but at home)! This was probably the biggest change for me. You'll have homework from multiple teachers, extracurriculars, and maybe even a part-time job. This directly connects to our course content about developing independence and self-management skills for future career success.
                 </p>
                 
                 <div class="personal-story">
                     <div class="story-title">When I Thought I Could Just Wing It</div>
-                    <p>In my first few months, I thought I could remember everything in my head. I was incredibly wrong. I forgot about a major project in one of my classes, and had to almost pull an all-nighter. From then on, I started to use the reminders app, which helps me stay on track.</p>
+                    <p>In my first few months, I thought I could remember everything in my head. I was incredibly wrong. I forgot about a major project in one of my classes, and had to almost pull an all-nighter. From then on, I started to use the reminders app, which helps me stay on track. But it wasn't just about the technology - I had to develop completely new habits around planning and prioritizing.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <div class="reflection-title">Deep Reflection on Growth</div>
+                    <p>This failure actually became one of my most important learning moments. I realized that time management isn't just about being organized - it's about taking responsibility for your own success. In our course, we discussed how employers value self-directed employees who can manage multiple priorities. This experience forced me to develop skills I'll use for the rest of my life.</p>
+                    <p>I also learned that different subjects require different types of time investment. Math homework might take me 30 minutes, but English essays need days of planning and revision. Understanding my own learning patterns became crucial for effective time management.</p>
+                </div>
+                
+                <div class="course-reference">
+                    <h4>Course Connection: Self-Management and Goal Setting</h4>
+                    <p>This ties into our unit on goal-setting and SMART objectives. Effective time management is really about breaking larger goals (like succeeding in high school) into smaller, manageable daily actions. It's also about developing what employers call "self-directed learning" - a key 21st-century skill.</p>
                 </div>
                 
                 <div class="action-steps">
                     <div class="action-title">What You Should Do:</div>
                     <ul>
-                        <li>Get a planner or use your phone's calendar app</li>
-                        <li>Write down ALL due dates as soon as you get them</li>
-                        <li>Break big projects into smaller, manageable tasks</li>
-                        <li>Set reminders 2-3 days before deadlines</li>
-                        <li>Schedule study time like you would a dentist appointment</li>
+                        <li>Get a planner or use your phone's calendar app - I recommend <a href="https://www.google.com/calendar" class="link" target="_blank">Google Calendar</a> or Apple Calendar</li>
+                        <li>Write down ALL due dates as soon as you get them, including test dates</li>
+                        <li>Break big projects into smaller, manageable tasks with mini-deadlines</li>
+                        <li>Set reminders 2-3 days before deadlines, not just the night before</li>
+                        <li>Schedule study time like you would a dentist appointment - make it non-negotiable</li>
                         <li>Leave buffer time for unexpected stuff (it WILL happen!)</li>
+                        <li>Track how long different types of assignments actually take you</li>
                     </ul>
                 </div>
             </div>
@@ -477,23 +115,35 @@
                 <div class="tip-number">3</div>
                 <h2 class="tip-title">Build a Friend Group</h2>
                 <p class="tip-content">
-                    High school can feel overwhelming at times, but you don't need to do it alone. Building a support system consisting of friends, teachers and mentors was incredibly helpful for me. These people, if chosen right, will celebrate your wins and help you through tougher times.
+                    High school can feel overwhelming at times, but you don't need to do it alone. Building a support system consisting of friends, teachers and mentors was incredibly helpful for me. These people, if chosen right, will celebrate your wins and help you through tougher times. This connects to our course content about networking and building professional relationships - skills that start now and continue throughout your career.
                 </p>
                 
                 <div class="personal-story">
                     <div class="story-title">How My English Teacher Saved My Grade</div>
-                    <p>I was struggling with essay writing in Grade 9. Instead of suffering in silence, I asked my English teacher for help. She gave me extra feedback and even recommended some writing resources. My grades improved, and I gained confidence!</p>
+                    <p>I was struggling with essay writing in Grade 9. Instead of suffering in silence, I asked my English teacher for help. She gave me extra feedback and even recommended some writing resources. My grades improved, and I gained confidence! But more importantly, I learned that asking for help is actually a sign of maturity, not weakness. This teacher became a mentor who helped me think about my future goals and even wrote a reference letter for my part-time job application.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <div class="reflection-title">Understanding Relationship Building</div>
+                    <p>Building these relationships taught me that success isn't just individual effort - it's collaborative. In our course, we learned about the importance of professional networks and mentorship. High school is actually perfect practice for this because teachers and older students can become genuine mentors who guide your decisions.</p>
+                    <p>I also realized that different people offer different types of support. Some friends are great for study groups, others for stress relief and fun. Some teachers are amazing for academic guidance, others for career advice. Learning to recognize and appreciate these different relationship types has been incredibly valuable.</p>
+                </div>
+                
+                <div class="course-reference">
+                    <h4>Course Connection: Communication and Networking Skills</h4>
+                    <p>This relates to our units on communication skills and building professional relationships. The ability to seek help, collaborate effectively, and maintain positive relationships with authority figures (teachers) are all workplace skills. We also discussed how diverse perspectives improve decision-making - which is exactly what happens when you have a good support network.</p>
                 </div>
                 
                 <div class="action-steps">
                     <div class="action-title">What You Should Do:</div>
                     <ul>
-                        <li>Introduce yourself to teachers - they WANT to help you succeed</li>
-                        <li>Join at least one club or sport to meet like-minded people</li>
-                        <li>Don't be afraid to ask questions (everyone else probably has the same ones!)</li>
-                        <li>Find a study partner in each of your classes</li>
-                        <li>Connect with older students who can share their experiences</li>
+                        <li>Introduce yourself to teachers during office hours - they WANT to help you succeed</li>
+                        <li>Join at least one club or sport to meet like-minded people with similar interests</li>
+                        <li>Don't be afraid to ask questions in class (everyone else probably has the same ones!)</li>
+                        <li>Find a study partner in each of your classes - academic collaboration is powerful</li>
+                        <li>Connect with older students who can share their experiences and insights</li>
                         <li>Remember: asking for help is a sign of strength, not weakness</li>
+                        <li>Be genuinely interested in others - relationships are two-way streets</li>
                     </ul>
                 </div>
             </div>
@@ -502,23 +152,35 @@
                 <div class="tip-number">4</div>
                 <h2 class="tip-title">Set Goals That Actually Matter to YOU</h2>
                 <p class="tip-content">
-                    Everyone will have opinions about what you should do in high school, whether it be to enjoy it, to get high grades, or to work hard to get into a dream university. But the thing is, your goals should reflect what YOU care about, not what everybody else does or expects. Start with small achievable goals and go from there.
+                    Everyone will have opinions about what you should do in high school, whether it be to enjoy it, to get high grades, or to work hard to get into a dream university. But the thing is, your goals should reflect what YOU care about, not what everybody else does or expects. Start with small achievable goals and go from there. This directly connects to our course content about personal values assessment and creating individualized life plans.
                 </p>
                 
                 <div class="personal-story">
                     <div class="story-title">Setting Goals</div>
-                    <p>At first, I set a goal to get at least a 95% in every subject because that's what my friends were doing and I thought it would be easily achievable. But I was wrong. It wasn't middle school or elementary school anymore. I realized I cared more about perfect grades than understanding concepts. I changed my goal to "truly understand each subject" and ended up doing better AND feeling happier.</p>
+                    <p>At first, I set a goal to get at least a 95% in every subject because that's what my friends were doing and I thought it would be easily achievable. But I was wrong. It wasn't middle school or elementary school anymore. I realized I cared more about perfect grades than understanding concepts. I changed my goal to "truly understand each subject" and ended up doing better AND feeling happier. This shift from external validation to internal motivation was a game-changer for my mental health and actual learning.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <div class="reflection-title">Values-Based Decision Making</div>
+                    <p>This experience taught me about the difference between intrinsic and extrinsic motivation - something we studied in our course. When my goals were based on what others expected, I felt constantly stressed and never satisfied. But when I aligned my goals with my own values (like curiosity and genuine learning), school became more enjoyable and I performed better.</p>
+                    <p>I also learned to set different types of goals: academic goals (understanding concepts), social goals (building friendships), and personal goals (developing confidence). This balanced approach prevented me from becoming too focused on just one area of my life.</p>
+                </div>
+                
+                <div class="course-reference">
+                    <h4>Course Connection: Personal Values and Life Planning</h4>
+                    <p>This connects to our units on identifying personal values, setting SMART goals, and creating individualized pathways. We learned that successful people align their actions with their values, not with others' expectations. This skill of authentic goal-setting is crucial for career satisfaction and life balance.</p>
                 </div>
                 
                 <div class="action-steps">
                     <div class="action-title">What You Should Do:</div>
                     <ul>
-                        <li>Set 2-3 realistic goals for your first semester</li>
-                        <li>Make them specific and measurable (not just "do well")</li>
-                        <li>Include both academic and personal goals</li>
-                        <li>Write them down and review them monthly</li>
-                        <li>Celebrate small wins along the way</li>
-                        <li>Be flexible - it's okay to adjust goals as you grow</li>
+                        <li>Set 2-3 realistic goals for your first semester based on YOUR interests and values</li>
+                        <li>Make them specific and measurable (not just "do well") - use the SMART goal framework</li>
+                        <li>Include both academic and personal goals for balanced development</li>
+                        <li>Write them down and review them monthly - goals evolve as you grow</li>
+                        <li>Celebrate small wins along the way - progress motivation is powerful</li>
+                        <li>Be flexible - it's okay to adjust goals as you learn more about yourself</li>
+                        <li>Reflect on WHY each goal matters to you personally</li>
                     </ul>
                 </div>
             </div>
@@ -527,24 +189,44 @@
                 <div class="tip-number">5</div>
                 <h2 class="tip-title">Take Care of Yourself First</h2>
                 <p class="tip-content">
-                    This might be the most important tip of all! High school brings new pressures, and it's easy to get caught up in trying to be perfect. But remember - you're still growing and learning. Be kind to yourself, and don't forget to have fun!
+                    This might be the most important tip of all! High school brings new pressures, and it's easy to get caught up in trying to be perfect. But remember - you're still growing and learning. Be kind to yourself, and don't forget to have fun! This connects to our course content about maintaining healthy work-life balance and developing sustainable success habits for long-term career health.
                 </p>
                 
                 <div class="personal-story">
                     <div class="story-title">Avoid Burnout</div>
-                    <p>In my second semester, I was doing homework until midnight every night and skipping lunch to study. I got sick, my grades dropped, and I was cranky all the time. That's when I learned that taking care of myself wasn't selfish - it was necessary!</p>
+                    <p>In my second semester, I was doing homework until midnight every night and skipping lunch to study. I got sick, my grades dropped, and I was cranky all the time. That's when I learned that taking care of myself wasn't selfish - it was necessary! I had to completely rethink what "working hard" meant. Real productivity comes from being well-rested, well-fed, and mentally healthy, not from grinding yourself into exhaustion.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <div class="reflection-title">Understanding Sustainable Success</div>
+                    <p>This burnout experience was actually one of my most valuable learning moments. In our course, we discussed how successful professionals maintain work-life balance and avoid burnout. I realized that self-care isn't a luxury - it's a fundamental requirement for sustained performance and happiness.</p>
+                    <p>I also learned that taking breaks actually improves my focus and creativity. When I'm well-rested, I can solve problems faster and retain information better. This understanding of how my brain works has made me much more effective as a student and will definitely help in my future career.</p>
+                </div>
+                
+                <div class="course-reference">
+                    <h4>Course Connection: Health and Wellness for Career Success</h4>
+                    <p>This ties into our units on maintaining physical and mental health for long-term career success. We learned that employers value workers who can manage stress, maintain consistent performance, and demonstrate emotional intelligence. These self-care habits you develop now become the foundation for lifelong career health.</p>
                 </div>
                 
                 <div class="action-steps">
                     <div class="action-title">What You Should Do:</div>
                     <ul>
-                        <li>Get 7-9 hours of sleep (your brain needs it to learn!)</li>
-                        <li><strong>Eat regular meals and stay hydrated</strong></li>
-                        <li>Make time for activities you enjoy</li>
-                        <li>Talk to someone when you're feeling stressed</li>
-                        <li>Remember that mistakes are part of learning</li>
+                        <li>Get 7-9 hours of sleep (your brain needs it to learn!) - use <a href="https://www.sleepfoundation.org/teens-and-sleep" class="link" target="_blank">sleep hygiene tips</a></li>
+                        <li><strong>Eat regular meals and stay hydrated</strong> - your brain is 75% water and needs fuel to function</li>
+                        <li>Make time for activities you enjoy - hobbies reduce stress and improve creativity</li>
+                        <li>Talk to someone when you're feeling stressed - use resources like <a href="https://kidshelpphone.ca/" class="link" target="_blank">Kids Help Phone</a></li>
+                        <li>Remember that mistakes are part of learning - embrace the growth mindset</li>
                         <li><strong>Don't compare yourself to others - you're on your own journey</strong></li>
+                        <li>Practice mindfulness or meditation - even 5 minutes daily helps with focus</li>
+                        <li>Exercise regularly - it improves both mental and physical health</li>
                     </ul>
+                </div>
+                
+                <div class="reflection-box">
+                    <div class="reflection-title">Final Thoughts on My High School Journey</div>
+                    <p>Writing this guide has made me reflect on how much I've grown since Grade 8. The scared kid who got lost on the first day is now someone who can help others navigate the same challenges. Each of these tips represents a real struggle I faced and overcame.</p>
+                    <p>What I've learned most is that high school isn't just about grades - it's about developing life skills, building relationships, and discovering who you are. The organizational skills, relationship-building abilities, goal-setting techniques, and self-care habits I developed are already helping me in my part-time job and will definitely be valuable in university and my future career.</p>
+                    <p>Remember, everyone's high school experience is different, but having a plan and the right mindset makes all the difference. You've got this!</p>
                 </div>
             </div>
             
@@ -558,83 +240,6 @@
         </div>
     </div>
     
-    <script>
-        let currentSection = 0;
-        const sections = ['intro', 'tip1', 'tip2', 'tip3', 'tip4', 'tip5'];
-        
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.tip-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Update current section index
-            currentSection = sections.indexOf(sectionId);
-            
-            // Update active tab
-            document.querySelectorAll('.tab')[currentSection].classList.add('active');
-            
-            // Update navigation
-            updateNavigation();
-            
-            // Update progress bar
-            updateProgressBar();
-        }
-        
-        function nextSection() {
-            if (currentSection < sections.length - 1) {
-                currentSection++;
-                showSection(sections[currentSection]);
-            }
-        }
-        
-        function previousSection() {
-            if (currentSection > 0) {
-                currentSection--;
-                showSection(sections[currentSection]);
-            }
-        }
-        
-        function updateNavigation() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            prevBtn.disabled = currentSection === 0;
-            nextBtn.disabled = currentSection === sections.length - 1;
-            
-            if (currentSection === sections.length - 1) {
-                nextBtn.textContent = 'You did it! 🎉';
-            } else {
-                nextBtn.textContent = 'Next →';
-            }
-        }
-        
-        function updateProgressBar() {
-            const progressFill = document.getElementById('progressFill');
-            const progress = ((currentSection + 1) / sections.length) * 100;
-            progressFill.style.width = progress + '%';
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                previousSection();
-            } else if (e.key === 'ArrowRight') {
-                nextSection();
-            }
-        });
-        
-        // Initialize
-        updateNavigation();
-        updateProgressBar();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
